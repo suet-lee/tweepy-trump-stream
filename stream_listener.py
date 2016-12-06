@@ -52,7 +52,7 @@ class StreamListener(tweepy.StreamListener):
 			return False
 
 class TrainStreamListener(StreamListener):
-
+# streamer to capture training data for classifiers
 	requires_location = False
 
 	def __init__(self, file_to_write, bias, time_limit=60, count_limit=500):
