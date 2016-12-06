@@ -1,7 +1,6 @@
-import os
 import pickle
-
-for file in os.listdir('/train_data')
-	print file
-
-with open('data/')
+sys.stdout = open('demo.txt',"w");
+from nltk.tokenize import word_tokenize
+from textblob.classifiers import NaiveBayesClassifier
+cl = pickle.load( open( "classifier.pickle", "rb" ) )
+print(cl.classify("text to classify"))

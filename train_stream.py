@@ -26,7 +26,7 @@ def get_filters(bias):
 
 bias = get_bias()
 filters = get_filters(bias)
-file_to_write = 'data/train_data_'+ bias + '_' + str(int(time.time())) +'.json'
+file_to_write = 'data/train/train_data_'+ bias + '_' + str(int(time.time())) +'.json'
 
 stream_listener = TrainStreamListener(file_to_write, bias, 12000)
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
