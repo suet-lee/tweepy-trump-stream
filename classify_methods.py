@@ -3,6 +3,8 @@ import json
 import os
 import math
 import re
+from helpers import *
+from cTextBlob import cTextBlob
 
 def collateStreamData():
 	data = []
@@ -15,10 +17,7 @@ def unlinkStreamData():
 	for file in os.listdir('data/'):
 		os.unlink('data/'+ file)
 
-def findWholeWord(w):
-    return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
-
-def weightScore(x, level = None):
+def weightScore(x, level=None):
 	if level == 'linear':
 		return x
 	elif level == 'quad':
@@ -28,12 +27,20 @@ def weightScore(x, level = None):
 	elif level is None:
 		return 1;
 
-def scoreSentiment(text, weight_level = None):
-	# returns tuple (polarity, subjectivity)
+def scoreSentiment(text, weight_level=None):
+	# returns weighted sentiment score
 	blob = TextBlob(text)
 	sentiment = blob.sentiment
-	subj_weight = weightScore(sentiment.subjectivity, weight_level)
-	return sentiment.polarity*subj_weight
+	if sentiment.polarity != 0:
+		polarity = sentiment.polarity
+		subjectivity = sentiment.subjectivity
+	else:
+		cblob = cTextBlob(text)
+		sentiment = cblob.sentiment()
+		polarity = sentiment['polarity']
+		subjectivity = sentiment['subjectivity']
+	subj_weight = weightScore(subjectivity, weight_level)
+	return polarity*subj_weight
 
 def extractEmotion(tweet):
 	# returns list of emotions and scores
@@ -43,7 +50,7 @@ def extractEmotion(tweet):
 				{'confused': ['confused','puzzled','questioning','wondering','baffled','bewildered']},
 				{'angry': ['angry','rage','disgust','disgusted']},
 				{'shocked': ['shock','stunned','astonished','surprised','shocked','dumbfounded']},
-				{'hopeful': ['optimistic','confident', 'positive', 'great', 'good']}]
+				{'hopeful': ['optimistic','confident', 'positive', 'great', 'good', 'congratulations']}]
 
 	score = {'happy': 0, 'sad': 0, 'scared': 0, 'confused': 0, 'angry': 0, 'shocked': 0, 'hopeful': 0}
 

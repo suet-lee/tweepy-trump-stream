@@ -61,3 +61,5 @@ def classifyTweets():
 			print 'Failed SQL query'
 	db.close()
 	unlinkStreamData()
+
+classifyTweets()
