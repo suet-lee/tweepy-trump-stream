@@ -6,7 +6,7 @@ class StreamListener(tweepy.StreamListener):
 
 	requires_location = True
 
-	def __init__(self, file_to_write, time_limit=60, count_limit=500):
+	def __init__(self, file_to_write, time_limit=600, count_limit=1000):
 		self.file_to_write = file_to_write
 		self.count = 0
 		self.start_time = time.time()
@@ -16,8 +16,7 @@ class StreamListener(tweepy.StreamListener):
 
 	def extract_data(self, data):
 		return {'text': json.loads(data)['text'],
-				'created_at': json.loads(data)['created_at'],
-				'place': json.loads(data)['place']['full_name'],
+				'city': json.loads(data)['place']['name'],
 				'country': json.loads(data)['place']['country']}
 
 	def on_status(self, status):

@@ -1,5 +1,6 @@
 /train_data
 /train_data2
 /data
+/tmp
 config.py
 *.pyc
