@@ -21,7 +21,7 @@ def getStream():
 	filters = ['trump', 'donald trump', 'notmypresident', 'maga', 'makeamericagreatagain', 'fortrump', 'protesttrump']
 	mkdirIfNotExists('data')
 
-	stream_listener = StreamListener(file_to_write, 60, 10)
+	stream_listener = StreamListener(file_to_write)
 	stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
 	stream.filter(track=filters)
 
