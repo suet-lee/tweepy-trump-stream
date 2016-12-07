@@ -52,13 +52,14 @@ def extractEmotion(tweet):
 				{'confused': ['confused','puzzled','questioning','wondering','baffled','bewildered']},
 				{'angry': ['angry','rage','disgust','disgusted']},
 				{'shocked': ['shock','stunned','astonished','surprised','shocked','dumbfounded']},
-				{'hopeful': ['optimistic','confident', 'positive', 'great', 'good', 'congratulations']}]
+				{'hopeful': ['optimistic','confident', 'positive', 'great', 'good', 'congratulations','glorious','awesome']}]
 
 	score = {'happy': 0, 'sad': 0, 'scared': 0, 'confused': 0, 'angry': 0, 'shocked': 0, 'hopeful': 0}
 
 	for emotion in emotions:
 		for adj in emotion:
-			if findWholeWord(adj)(tweet):
+			# if findWholeWord(adj)(tweet):
+			if countPhrase(adj, tweet) > 0:
 				score[adj] += 1
 
 	e_list = []
