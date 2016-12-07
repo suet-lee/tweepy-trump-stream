@@ -1,4 +1,12 @@
 import re
+import os
+
+def mkdirIfNotExists(path):
+	try:
+	    os.makedirs(path)
+	except OSError:
+	    if not os.path.isdir(path):
+	        raise
 
 def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search

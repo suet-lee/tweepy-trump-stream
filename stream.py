@@ -3,13 +3,7 @@ from stream_listener import StreamListener
 from config import *
 from classify_data import *
 import time
-
-def mkdirIfNotExists(path):
-	try:
-	    os.makedirs(path)
-	except OSError:
-	    if not os.path.isdir(path):
-	        raise
+from helpers import *
 
 def getStream():
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)

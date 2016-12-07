@@ -13,9 +13,11 @@ def collateStreamData():
 			data += json.load(fp)
 	return data
 
-def unlinkStreamData():
+def archiveStreamData():
+	mkdirIfNotExists('data_archived')
 	for file in os.listdir('data/'):
-		os.unlink('data/'+ file)
+		os.rename('data/'+file, 'data_archived/'+file)
+		# os.unlink('data/'+ file)
 
 def weightScore(x, level=None):
 	if level == 'linear':

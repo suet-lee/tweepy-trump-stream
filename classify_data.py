@@ -60,4 +60,4 @@ def classifyTweets():
 			db.rollback()
 			print 'Failed SQL query'
 	db.close()
-	unlinkStreamData()
+	archiveStreamData()

@@ -16,3 +16,5 @@ DB_HOST =\n
 DB_USER =\n
 DB_PASSWD =\n
 DB_NAME =\n
+\n
+Run python firehose.py

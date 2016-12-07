@@ -1,6 +1,7 @@
 from stream import *
 import os
 import sys
+from helpers import *
 
 pid = str(os.getpid())
 pidfile = 'tmp/stream.pid'
